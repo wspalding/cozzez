@@ -1,8 +1,10 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 class Test(models.Model):
     name = models.CharField(max_length=20)
+    date = models.DateTimeField(default=datetime.now)
 
 class Topic(models.Model):
     # name = models.CharField(max_length=50)

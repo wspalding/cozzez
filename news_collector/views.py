@@ -5,6 +5,6 @@ from news_collector.models import Test
 
 def index(request):
     tests = Test.objects.all()
-    test2 = Test.objects.get_or_create(name="test2")
+    test2 = Test.objects.get_or_create(name="test3")
     all_tests = [x.name for x in tests]
     return JsonResponse({"test models": all_tests})
