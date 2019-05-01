@@ -8,3 +8,5 @@ admin.site.register(Article)
 #admin.site.register(Personality)
 #admin.site.register(Author)
 admin.site.register(Label)
+
+admin.site.register(Test)

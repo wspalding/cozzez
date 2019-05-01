@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+class Test(models.Model):
+    name = models.CharField(max_length=20)
+
 class Topic(models.Model):
     # name = models.CharField(max_length=50)
     label1 = models.ForeignKey("Label", on_delete=models.CASCADE, null=True, related_name="top_label")

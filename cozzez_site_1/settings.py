@@ -46,14 +46,16 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # white noise for serving static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # more django
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # white noise for serving static files
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'cozzez_site_1.urls'
@@ -138,3 +140,12 @@ DATABASES['default'].update(db_from_env)
 
 
 # celery settings
+
+
+# get local settings if they exist
+try:
+    from cozzez_site_1.local_settings import *
+except:
+    pass
+
+
