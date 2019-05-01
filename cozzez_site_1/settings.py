@@ -121,7 +121,7 @@ STATIC_URL = '/static/'
 
 
 # heroku settings
-STATIC_ROOT = os.path.join(BASE_DIR, ‘staticfiles’)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # celery settings
