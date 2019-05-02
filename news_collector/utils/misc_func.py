@@ -1,6 +1,6 @@
 from itertools import zip_longest
-from web_crawler.models import *
-from web_crawler.utils.crawlers import news_collector
+from news_collector.models import *
+from news_collector.utils.crawlers import news_collector
 import datetime
 
 
@@ -87,12 +87,12 @@ def fill_database_from_info(info, **kwargs):
         if item["status_code"] != 200:
             info[key]["created"] = False
             continue
-        author = Author.objects.get_or_create(
-            name=item["author"],
-            defaults={
-                'affiliation':item["source"]
-            },
-        )
+#        author = Author.objects.get_or_create(
+#            name=item["author"],
+#            defaults={
+#                'affiliation':item["source"]
+#            },
+#        )
         article = Article.objects.get_or_create(
             url=key,
             defaults={
@@ -100,7 +100,7 @@ def fill_database_from_info(info, **kwargs):
                 'date':item["date"],
                 'title':item["title"],
                 'media_url':item["media"],
-                'author':author[0],
+#                'author':author[0],
                 'source_url':item["source_url"],
             }
         )
@@ -121,6 +121,8 @@ def fill_database_from_info(info, **kwargs):
         new_articles.append(article[0])
         author[0].save()
         
+        
+        # TODO: make this better
     # create topics
     topic_list = {}
     today = datetime.date(year, month, day)

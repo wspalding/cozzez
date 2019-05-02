@@ -20,9 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
+#try:
+#    from cozzez_site_1.local_settings import SECRET_KEY as secret
+#    SECRET_KEY = secret
+#    print("FOUND LOCAL SETTINGS")
+#except Exception as e:
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
+#    print("DID NOT FIND LOCAL SETTINGS: \n", e)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 

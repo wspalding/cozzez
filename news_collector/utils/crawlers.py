@@ -1,7 +1,7 @@
 #need to replace with mechanicalsoup
 import mechanicalsoup as MechSoup
 from bs4 import BeautifulSoup as BSoup
-from web_crawler.utils.text_reader import get_labels
+from news_collector.utils.text_reader import get_labels
 import json
 import requests
 import datetime
@@ -77,20 +77,20 @@ class news_collector():
             cur_dict["title"] = page.find('h1').text
             cur_dict["text"] = ""
             cur_dict["labels"] = get_labels(cur_dict["text"], cur_dict["title"])
-            cur_dict["author"] = "unknown"
-            author = page.find('section', {'class':'mb7'})
-            if author is None:
-                index = url.find("www.msnbc.com/")
-                end_index = url.find("/watch/")
-                if index >= 0 and end_index > index:
-                    cur_dict["author"] = url[index+len("www.msnbc.com/"):end_index]
-            if author is not None:
-                index = author.text.find("By ")
-                if index > 0:
-                    cur_dict["author"] = author.text[index+len("By "):]
-                else:
-                    cur_dict["author"] = "unknown"
-                #cur_dict["author"] = author.text
+#            cur_dict["author"] = "unknown"
+#            author = page.find('section', {'class':'mb7'})
+#            if author is None:
+#                index = url.find("www.msnbc.com/")
+#                end_index = url.find("/watch/")
+#                if index >= 0 and end_index > index:
+#                    cur_dict["author"] = url[index+len("www.msnbc.com/"):end_index]
+#            if author is not None:
+#                index = author.text.find("By ")
+#                if index > 0:
+#                    cur_dict["author"] = author.text[index+len("By "):]
+#                else:
+#                    cur_dict["author"] = "unknown"
+#                #cur_dict["author"] = author.text
             cur_dict["media"] = None
             text = page.find_all('p')
             full_text = ""
@@ -199,19 +199,19 @@ class news_collector():
             cur_dict["labels"] = get_labels(real_text,
                                             cur_dict["title"])
             #cur_dict["text"] = full_text
-            author = page.find("div", {"class": "author-byline"})
-            if author:
-                author = author.find('a')
-            if author is None:
-                    author = page.find("span", {"class": "author"})
-            name = "unknown"
-            if author:
-                name = author.text
-                #bar = name.find("|")
-                #if bar != -1:
-                    #name = name[4 : (bar - 1)]
-                    #name = new_name
-            cur_dict["author"] = name
+#            author = page.find("div", {"class": "author-byline"})
+#            if author:
+#                author = author.find('a')
+#            if author is None:
+#                    author = page.find("span", {"class": "author"})
+#            name = "unknown"
+#            if author:
+#                name = author.text
+#                #bar = name.find("|")
+#                #if bar != -1:
+#                    #name = name[4 : (bar - 1)]
+#                    #name = new_name
+#            cur_dict["author"] = name
             cur_dict["media"] = None
             vid = page.find("div", {"class": "video-container"})
             if vid:
@@ -257,7 +257,7 @@ class news_collector():
             cur_dict["source_url"] = "https://www.kqed.org/"
             cur_dict["status_code"] = request.status_code
             cur_dict["title"] = post["attributes"]["title"]
-            cur_dict["author"] = "unknown"
+#            cur_dict["author"] = "unknown"
             result = self.browser.open(post["attributes"]["disqusUrl"])
             page = self.browser.get_current_page()
             # author = page.find("span", {"class":"src-routes-Site-routes-Post-components-Post-___Post__post_Author___3vn-d"})
@@ -343,12 +343,12 @@ class news_collector():
                 text += p.text + " "
             cur_dict["text"] = text 
             cur_dict["labels"] = get_labels(cur_dict["text"], cur_dict["title"])
-            author = page.find("p", {"itemprop":"author creator"})
-            cur_dict["author"] = "unknown"
-            if author is not None:
-                #a = author.find("a")
-                #if a is not None:
-                cur_dict["author"] = author.text
+#            author = page.find("p", {"itemprop":"author creator"})
+#            cur_dict["author"] = "unknown"
+#            if author is not None:
+#                #a = author.find("a")
+#                #if a is not None:
+#                cur_dict["author"] = author.text
             cur_dict["media"] = None
         return info
     
