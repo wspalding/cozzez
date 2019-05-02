@@ -83,8 +83,9 @@ def login(request, **kwargs):
 
 
 def test(request, **kwargs):
-    labels = get_labels(test_text)
-    return JsonResponse({"labels": labels})
+    articles = Article.objects.all()
+    titles = [x.title for x in articles]
+    return JsonResponse({"titles": titles})
 
 
 
