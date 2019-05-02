@@ -51,24 +51,24 @@ def fill_database_for_date( **kwargs):
     list_of_topics = {}
     
     crawler = news_collector()
-    list_of_topics["kqed"] = crawler.extract_kqed_info()
-    fill_database_from_info(list_of_topics["kqed"], 
-                            month=month, 
-                            day=day, 
-                            year=year)
-    
-    list_of_topics["fox"] = crawler.extract_fox_info()
-    fill_database_from_info(list_of_topics["fox"], 
-                            month=month, 
-                            day=day, 
-                            year=year)
-    
-    list_of_topics["msnbc"] = crawler.extract_msnbc_info()
-    fill_database_from_info(list_of_topics["msnbc"], 
-                            month=month, 
-                            day=day, 
-                            year=year)
-    
+#    list_of_topics["kqed"] = crawler.extract_kqed_info()
+#    fill_database_from_info(list_of_topics["kqed"],
+#                            month=month,
+#                            day=day,
+#                            year=year)
+#
+#    list_of_topics["fox"] = crawler.extract_fox_info()
+#    fill_database_from_info(list_of_topics["fox"],
+#                            month=month,
+#                            day=day,
+#                            year=year)
+#
+#    list_of_topics["msnbc"] = crawler.extract_msnbc_info()
+#    fill_database_from_info(list_of_topics["msnbc"],
+#                            month=month,
+#                            day=day,
+#                            year=year)
+#
     list_of_topics["NYT"] = crawler.extract_NYT_info()
     fill_database_from_info(list_of_topics["NYT"], 
                             month=month, 
@@ -119,7 +119,7 @@ def fill_database_from_info(info, **kwargs):
                 new_label.save()
         article[0].save()
         new_articles.append(article[0])
-        author[0].save()
+#        author[0].save()
         
         
         # TODO: make this better
