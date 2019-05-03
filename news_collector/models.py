@@ -38,7 +38,7 @@ class Article(models.Model):
 #                      )
     affiliation = models.CharField(max_length=20)
     date = models.DateTimeField()
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     url = models.URLField()
     source_url = models.URLField(null=True)
     media_url = models.URLField(null=True)
