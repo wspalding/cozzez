@@ -51,24 +51,30 @@ def fill_database_for_date( **kwargs):
     list_of_topics = {}
     
     crawler = news_collector()
-#    list_of_topics["kqed"] = crawler.extract_kqed_info()
-#    fill_database_from_info(list_of_topics["kqed"],
-#                            month=month,
-#                            day=day,
-#                            year=year)
-#
-#    list_of_topics["fox"] = crawler.extract_fox_info()
-#    fill_database_from_info(list_of_topics["fox"],
-#                            month=month,
-#                            day=day,
-#                            year=year)
-#
-#    list_of_topics["msnbc"] = crawler.extract_msnbc_info()
-#    fill_database_from_info(list_of_topics["msnbc"],
-#                            month=month,
-#                            day=day,
-#                            year=year)
-#
+    print("collecting data from kqed")
+    list_of_topics["kqed"] = crawler.extract_kqed_info()
+    print("adding data to database")
+    fill_database_from_info(list_of_topics["kqed"],
+                            month=month,
+                            day=day,
+                            year=year)
+
+    print("collecting data from fox")
+    list_of_topics["fox"] = crawler.extract_fox_info()
+    print("adding data to database")
+    fill_database_from_info(list_of_topics["fox"],
+                            month=month,
+                            day=day,
+                            year=year)
+
+    print("collecting data from msnbc")
+    list_of_topics["msnbc"] = crawler.extract_msnbc_info()
+    print("adding data to database")
+    fill_database_from_info(list_of_topics["msnbc"],
+                            month=month,
+                            day=day,
+                            year=year)
+
     print("collecting data from nyt")
     list_of_topics["NYT"] = crawler.extract_NYT_info()
     print("adding data to database")
