@@ -106,10 +106,11 @@ def fill_database_from_info(info, **kwargs):
                 'source_url':item["source_url"],
             }
         )
-        print("created new article: \n {}: {}, {}, {} \n".format(item["title"], item["source"], item["date"], item["source_url"]))
+        print("created new article: \n {}: {}, {}, {} \n".format(item["title"], item["source"], item["date"], key))
         info[key]["created"] = article[1]
         if article[1] is False:
             new_articles.append(article[0])
+            print("article already found")
             continue
         print("making labels for article {}".format(item["title"]))
         for key2, item2 in item["labels"].items():
@@ -121,6 +122,7 @@ def fill_database_from_info(info, **kwargs):
                     article=article[0],
                 )
                 new_label.save()
+        print("saving article")
         article[0].save()
         new_articles.append(article[0])
 #        author[0].save()
