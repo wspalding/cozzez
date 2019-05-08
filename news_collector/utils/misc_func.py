@@ -96,12 +96,15 @@ def fill_database_from_info(info, **kwargs):
 #            },
 #        )
         print("getting/creating new article: \n {}: {}, {}, {} \n".format(item["title"], item["source"], item["date"], key))
+        title_string = item["title"]
+        if len(title_string) > 100:
+            title_string = title_string[:97] + "..."
         article = Article.objects.get_or_create(
             url=key,
             defaults={
                 'affiliation':item["source"],
                 'date':item["date"],
-                'title':item["title"],
+                'title':title_string,
 #                'media_url':item["media"],
 #                'author':author[0],
                 'source_url':item["source_url"],
