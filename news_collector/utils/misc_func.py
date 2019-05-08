@@ -106,11 +106,12 @@ def fill_database_from_info(info, **kwargs):
                 'source_url':item["source_url"],
             }
         )
-        print("created new article: \n {}: {}, {}, {}".format(item["title"], item["source"], item["date"], item["source_url"]))
+        print("created new article: \n {}: {}, {}, {} \n".format(item["title"], item["source"], item["date"], item["source_url"]))
         info[key]["created"] = article[1]
         if article[1] is False:
             new_articles.append(article[0])
             continue
+        print("making labels for article {}".format(item["title"]))
         for key2, item2 in item["labels"].items():
             MIN_LABEL_SCORE = 5
             if item2["total"] > MIN_LABEL_SCORE:
@@ -127,6 +128,7 @@ def fill_database_from_info(info, **kwargs):
         
         # TODO: make this better
     # create topics
+    print("making topics")
     topic_list = {}
     today = datetime.date(year, month, day)
     old_topics = Topic.objects.filter(date=today)
