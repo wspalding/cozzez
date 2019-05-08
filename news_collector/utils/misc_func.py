@@ -95,6 +95,7 @@ def fill_database_from_info(info, **kwargs):
 #                'affiliation':item["source"]
 #            },
 #        )
+        print("getting/creating new article: \n {}: {}, {}, {} \n".format(item["title"], item["source"], item["date"], key))
         article = Article.objects.get_or_create(
             url=key,
             defaults={
@@ -106,7 +107,7 @@ def fill_database_from_info(info, **kwargs):
                 'source_url':item["source_url"],
             }
         )
-        print("created new article: \n {}: {}, {}, {} \n".format(item["title"], item["source"], item["date"], key))
+        
         info[key]["created"] = article[1]
         if article[1] is False:
             new_articles.append(article[0])
