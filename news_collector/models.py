@@ -41,7 +41,7 @@ class Article(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField()
     source_url = models.URLField(null=True)
-    media_url = models.URLField(null=True)
+#    media_url = models.URLField(null=True)
 #    bias = models.CharField(max_length=1, choices=POLITICAL_BIAS)
     topic = models.ManyToManyField(Topic)
 #    personalities = models.ManyToManyField('Personality')
