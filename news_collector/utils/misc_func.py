@@ -106,7 +106,7 @@ def fill_database_from_info(info, **kwargs):
                 'source_url':item["source_url"],
             }
         )
-        print("created new article: \n {}: {}, {}, {}".format(item["title"], item["source"], item["date"], item["url"]))
+        print("created new article: \n {}: {}, {}, {}".format(item["title"], item["source"], item["date"], item["source_url"]))
         info[key]["created"] = article[1]
         if article[1] is False:
             new_articles.append(article[0])
