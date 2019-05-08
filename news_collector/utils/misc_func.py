@@ -69,7 +69,9 @@ def fill_database_for_date( **kwargs):
 #                            day=day,
 #                            year=year)
 #
+    print("collecting data from nyt")
     list_of_topics["NYT"] = crawler.extract_NYT_info()
+    print("adding data to database")
     fill_database_from_info(list_of_topics["NYT"], 
                             month=month, 
                             day=day, 
@@ -120,7 +122,7 @@ def fill_database_from_info(info, **kwargs):
         article[0].save()
         new_articles.append(article[0])
 #        author[0].save()
-        
+
         
         # TODO: make this better
     # create topics
