@@ -130,6 +130,14 @@ USE_L10N = True
 USE_TZ = True
 
 
+#logging settings
+from cozzez_site_1.logger import LOGGING
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel('INFO')
+logger.info('logger created')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
