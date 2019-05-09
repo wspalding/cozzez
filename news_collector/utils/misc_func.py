@@ -126,9 +126,11 @@ def fill_database_from_info(info, **kwargs):
         for key2, item2 in item["labels"].items():
             MIN_LABEL_SCORE = 5
             if item2["total"] > MIN_LABEL_SCORE:
-                label_word = key2[:47] + '...'
+                label_word = key2
+                if len(label_word) > 50:
+                    label_word = label_word[:47] + '...'
                 new_label = Label(
-                    word=key2,
+                    word=label_word,
                     score=item2["total"],
                     article=article[0],
                 )
