@@ -1,5 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 import random
+import celery
 from celery.decorators import task
 from news_collector.models import Test
 from news_collector.utils.misc_func import fill_database_for_date
