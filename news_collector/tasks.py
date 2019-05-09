@@ -25,7 +25,7 @@ def make_test_model(number):
     name = "test{}".format(number)
     new_model = Test.objects.get_or_create(name=name)
     new_model[0].save()
-    celery.backend_cleanup()
+    #celery.backend_cleanup()
 
 @task(name="collect_news_stories")
 def collect_news_stories():
