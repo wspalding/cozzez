@@ -32,5 +32,5 @@ def collect_news_stories():
     print("collecting news stories")
     info = fill_database_for_date()
     print("done collecting news stories")
-    return info
+    # return info
 
