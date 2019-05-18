@@ -17,6 +17,10 @@ def home(request):
                                          year=now.year,)
     return redirect(url)
 
+def reader_page(request):
+    context = {}
+    return render(request,'reader_page.html', context)
+
 
 def date(request, **kwargs):
     month = kwargs.get("month")
