@@ -2,3 +2,4 @@ db.sqlite3
 */__pycache__/*
 django.db
 cozzez_site_1/local_settings.py
+*/imports/*

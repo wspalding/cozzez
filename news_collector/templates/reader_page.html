@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
@@ -12,13 +12,29 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         {% load static %}
-        <script type="text/javascript" src="{% static "reader_page.js" %}"></script>
-        <link rel="stylesheet" href="{% static "reader_page.css" %}">
+        <script type="text/javascript" src="{% static 'reader_page.js' %}"></script>
+        <script type="text/javascript" src="/static/handlebars-v4.1.2.js"></script>
+        <link rel="stylesheet" href="{% static 'reader_page.css' %}">
             <!--start work on side bar navigation and stuff-->
     </head>
     <body>
-        <h1>
-            test
-        </h1>
+        <div class="row" id="banner">
+        	<img src="/static/CozzezIcon7.png" id="banner_logo">
+            <h1 id="banner_text">
+                cozzez
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <form class="input_form">
+                	<input type="text" name="search_bar" id="search_bar">
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <div class="results">
+                	results
+                </div>
+            </div>
+        </div>
     </body>
 </html>
