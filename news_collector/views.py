@@ -18,10 +18,17 @@ def home(request):
     return redirect(url)
 
 def reader_page(request):
-    context = {
-        "site_url": request.build_absolute_uri()
-            }
+    context = {"site_url": request.build_absolute_uri()}
     return render(request,'reader_page.html', context)
+
+def get_news_links(request, **kwargs):
+    key_word = kwargs.get("key_word")
+    collector = news_collector()
+    links = collector.get_msnbc_links()
+    result = {"working": "yes", "key_word": key_word, "links": links}
+    return_val = HttpResponse(json.dumps(result), content_type="application/json")
+    print("return val: ", return_val)
+    return return_val
 
 
 def date(request, **kwargs):

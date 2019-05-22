@@ -34,7 +34,30 @@ body {
 	padding-left: 20px;
 }
 
+.webpage_results {
+	/*border: 2px solid black;*/
+}
+
+#links_list {
+	padding-left: 20px;
+	font-size: 11px;
+	text-align: center;
+}
+
+#result_iframe {
+	width: 100%;
+	height: 100%;
+}
+
+#list_breaks {
+	margin: 0px;
+}
+
 #search_bar {
 	width: 100%;
+}
+
+#hidden_url {
+	display: none;
 }
 

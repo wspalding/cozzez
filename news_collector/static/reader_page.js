@@ -1,51 +1,59 @@
-let site_url = document.getElementById("my_url");
-
+var site_url;
 
 $(function () 
 {
-  // Grab the template script
-  var source = document.getElementById("webpage_template").innerHTML;
-
-  // Compile the template
-  var template = Handlebars.compile(source);
-
-  // console.log(template)
-  // Define our data object
-  var context = {
-  	website: "this works",
-  };
-  // console.log(context)
-  // Pass our data to the template
-  var html = template(context);
-  // console.log(html)
-  // Add the compiled html to the page
-  $('.webpage_results').html(html);
+  // Get Url from django
+  var source = document.getElementById("hidden_url");
+  site_url = source.innerHTML
+  site_url = site_url.replace(/\s+/g,'')
+  // source.style.display = "none";
 });
 
 
-function test() 
+function get_websites() 
 {
 	// body...
-	// Grab the template script
-  var source = document.getElementById("webpage_template").innerHTML;
+	var url = site_url + 'requests/news_links/test'
+	console.log(url)
+	$.ajax({
+		url: url,
+		type: "GET",
+		contentType: 'application/json',
+	    // data: json,
+	    // dataType: 'json',
+	    cache: false,
+		success: function(result){
+			console.log("result: ");
+			console.log(result);
+			// Grab the template script
+			var source = document.getElementById("list_template").innerHTML;
+			// Compile the template
+			var template = Handlebars.compile(source);
+			// Define our data object
+			var context = {
+			  	list: result.links,
+			  };
+			var html = template(context);
 
-  // Compile the template
-  var template = Handlebars.compile(source);
-
-  console.log(site_url)
-  // Define our data object
-  var context = {
-  	website: "testing",
-  };
-  var html = template(context);
-
-  $('.search_results').html(html);
+			$('.search_results').html(html);
+			return false;
+		},
+		error: function(error){
+			console.log("error: ");
+			console.log(error);
+			var context = {
+			  	website: error,
+			  };
+			 return false;
+		}
+	})
   return false;
 }
 
 function display_website()
 {
-	var url = "https://youtube.com"
+	var url = site_url
+	console.log(site_url)
 	$.ajax({
 		url: url,
 		type: "GET",

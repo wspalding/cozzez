@@ -27,24 +27,39 @@
         </div>
         <div class="row" id="columns">
             <div class="col-sm-6">
-                <form class="input_form" onsubmit="return display_website();">
+                <form class="input_form" onsubmit="return get_websites();">
                 	<input type="text" name="search_bar" id="search_bar">
                 </form>
                 <div class="search_results">
             	</div>
             </div>
             <div class="col-sm-6">
-                <div class="webpage_results">
+            	<iframe name="result_frame" id="result_iframe">
+            		
+            	</iframe>
+                <!-- <div class="webpage_results">
                 	results
-                </div>
+                </div> -->
             </div>
+        </div>
+        <div id="hidden_url">
+        	{{site_url}}
         </div>
     </body>
 
-    my_url = {{site_url}}
+
     {% verbatim %}
     <script id="webpage_template" type="text/x-handlebars-template">
-    	{{website}}
+    	{{{website}}}
+    </script>
+    <script id="list_template" type="text/x-handlebars-template">
+    	<div id="links_list">
+    		{{#each list}}
+	    		<a href="{{this}}" target="result_frame">{{this}}</a>
+	    		<hr id="list_breaks">
+	  		{{/each}}
+    	</div>
     </script>
     {% endverbatim %}
+
 </html>
