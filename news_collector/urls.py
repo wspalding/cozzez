@@ -14,4 +14,5 @@ urlpatterns = [
                #path('<int:month>/<int:day>/<int:year>/', views.date, name='date'),
                
                # path('<int:month>/<int:day>/<int:year>/<string:title>', views.story, name='story'),
+               
                ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

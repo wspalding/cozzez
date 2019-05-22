@@ -18,7 +18,9 @@ def home(request):
     return redirect(url)
 
 def reader_page(request):
-    context = {}
+    context = {
+        "site_url": request.build_absolute_uri()
+            }
     return render(request,'reader_page.html', context)
 
 
