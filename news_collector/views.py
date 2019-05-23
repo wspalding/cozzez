@@ -24,7 +24,14 @@ def reader_page(request):
 def get_news_links(request, **kwargs):
     key_word = kwargs.get("key_word")
     collector = news_collector()
-    links = collector.get_msnbc_links()
+    links = []
+    # TODO: need do better
+    links.extend(collector.get_msnbc_links())
+    links.extend(collector.get_fox_links())
+    links.extend(collector.get_kqed_links())
+    links.extend(collector.get_NYT_links())
+    links.extend(collector.get_LAT_links())
+    links.extend(collector.get_NPR_links())
     result = {"working": "yes", "key_word": key_word, "links": links}
     return_val = HttpResponse(json.dumps(result), content_type="application/json")
     print("return val: ", return_val)

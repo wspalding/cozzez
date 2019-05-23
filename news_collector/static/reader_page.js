@@ -30,6 +30,16 @@ function get_websites()
 			// Compile the template
 			var template = Handlebars.compile(source);
 			// Define our data object
+			search_term = document.getElementById("search_bar").value;
+			for (var i = result.links.length - 1; i >= 0; i--) 
+			{
+				if(!result.links[i].includes(search_term))
+				{
+					result.links.splice(i,1);
+				}
+				
+			}
+
 			var context = {
 			  	list: result.links,
 			  };
