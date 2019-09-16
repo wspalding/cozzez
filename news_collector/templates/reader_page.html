@@ -17,31 +17,102 @@
         <script type="text/javascript" src="{% static 'reader_page.js' %}"></script>
         <link rel="stylesheet" href="{% static 'reader_page.css' %}">
             <!--start work on side bar navigation and stuff-->
+		<title>
+			cozzez
+		</title>
     </head>
     <body>
-        <div class="row" id="banner">
-        	<img src="/static/CozzezIcon7.png" id="banner_logo">
-            <h1 id="banner_text">
-                cozzez
-            </h1>
-        </div>
-        <div class="row" id="columns">
-            <div class="col-sm-6">
-                <form class="input_form" onsubmit="return get_websites();">
-                	<input type="text" name="search_bar" id="search_bar">
-                </form>
-                <div class="search_results">
-            	</div>
+    	<div class="col-sm-12">
+    		<div class="row" id="banner">
+	        	<img src="/static/CozzezIcon7.png" id="banner_logo">
+	            <h1 id="banner_text">
+	                cozzez
+	            </h1>
+                <div class="card user_login">
+                    <button class="btn" id="login_button" onclick="login_signup()">
+                    login
+                    </button>
+                </div>
             </div>
-            <div class="col-sm-6">
-            	<iframe name="result_frame" id="result_iframe">
-            		
-            	</iframe>
-                <!-- <div class="webpage_results">
-                	results
-                </div> -->
+            <!-- The Modal -->
+            <div id="login_modal" class="modal">
+                <!-- Modal content -->
+                <div class="login-modal-content">
+                    <div class="col" id="login_cols">
+                        <form onsubmit="login()">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <p>login</p>
+                            <div class="row login_input">
+                                <div class="col login_text">
+                                    username: 
+                                </div>
+                                <div class="col login_text">
+                                    <input type="text" name="username">
+                                </div>
+                            </div>
+                            <div class="row login_input">
+                                <div class="col login_text">
+                                    password: 
+                                </div>
+                                <div class="col login_text">
+                                    <input type="password" name="password">
+                                </div>
+                            </div>
+                            <input type="submit" name="login_button" class="login_submit_button" value="login">
+                        </form>
+                        <form onsubmit="signup()">
+                            <p>sign up</p>
+                            <div class="row login_input">
+                                <div class="col login_text">
+                                    email: 
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="email">
+                                </div>
+                            </div>
+                            <div class="row login_input">
+                                <div class="col login_text">
+                                    password: 
+                                </div>
+                                <div class="col">
+                                    <input type="password" name="password">
+                                </div>
+                            </div>
+                            <input type="submit" name="login_button" class="login_submit_button" value="signup">
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
+                
+
+	        <div class="row" id="date_scroller">
+	        	<div class="scroll_menu" id="scroll_menu">
+
+	        	</div>
+	        </div>
+	        
+
+	        <div id="mySidenav" class="sidenav" >
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="#">About</a>
+				<a href="#">Services</a>
+				<a href="#">Clients</a>
+				<a href="#">Contact</a>
+			</div>
+			<!-- Use any element to open the sidenav -->
+			<div class="row" id="main">
+				<div class="col-sm-11" id="content">
+					
+
+				</div>
+				<div class="col-sm-1" id="side">
+					<button onclick="openNav()" class="open_button">open</button>
+				</div>
+			</div>
+    	</div>
+        
+
         <div id="hidden_url">
         	{{site_url}}
         </div>
@@ -52,6 +123,7 @@
     <script id="webpage_template" type="text/x-handlebars-template">
     	{{{website}}}
     </script>
+
     <script id="list_template" type="text/x-handlebars-template">
     	<div id="links_list">
     		{{#each list}}
@@ -59,6 +131,24 @@
 	    		<hr id="list_breaks">
 	  		{{/each}}
     	</div>
+    </script>
+
+    <script id="protest_post_template" type="text/x-handlebars-template">
+        <div class="card post_card">
+            <div class="row post_card_content">
+                <img class="post_location_img" src="https://i.imgur.com/3pXQdzm.png">
+                <div class="col post_info">
+                    <div>
+                        <h5 class="post_title">title {{number}}</h5>
+                    </div>
+                    <a href="#">test_url</a>
+                    <div class="row post_links">
+                        <a class="comments_link" href="#">comments_url</a>
+                        <a class="comments_link" href="#">live_chat_url</a>
+                    </div>
+                </div>
+            </div>
+        </div>    
     </script>
     {% endverbatim %}
 

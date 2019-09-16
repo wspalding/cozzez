@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
-from news_collector.utils.crawlers import *
-from news_collector.utils.misc_func import *
+#from news_collector.utils.crawlers import *
+#from news_collector.utils.misc_func import *
 # Create your views here.
 from django.utils import timezone
 from news_collector.models import *
-from news_collector.utils.text_reader import *
+#from news_collector.utils.text_reader import *
 import datetime
 
 def home(request):
@@ -18,8 +18,14 @@ def home(request):
     return redirect(url)
 
 def reader_page(request):
-    context = {"site_url": request.build_absolute_uri()}
+    protests = Protest.objects.all()
+    context = {"site_url": request.build_absolute_uri(),
+                "protests": list(protests)}
     return render(request,'reader_page.html', context)
+
+def story_page(request):
+    context = {"site_url": request.build_absolute_uri()}
+    return render(request, 'story_page.html', context)
 
 def get_news_links(request, **kwargs):
     key_word = kwargs.get("key_word")

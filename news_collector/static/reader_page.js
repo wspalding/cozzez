@@ -1,13 +1,83 @@
 var site_url;
+var today;
 
+//recieve site url from server
 $(function () 
 {
   // Get Url from django
   var source = document.getElementById("hidden_url");
   site_url = source.innerHTML
-  site_url = site_url.replace(/\s+/g,'')
+  site_url = site_url.replace(/\s+/g,'') 
   // source.style.display = "none";
+  //get_websites() 
+  
 });
+
+
+//add date scroller to page
+$(function()
+{
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+	var scroller = document.getElementById("scroll_menu");
+	var num_days = 14
+	today = new Date();
+	// console.log(today)
+	DotW = 7; //today.getDay();
+	for (var i = 0; i < num_days; i++) 
+	{
+		var current_day = new Date()
+		current_day.setDate(today.getDate() + i - DotW)
+		// console.log(current_day)
+		var date = months[current_day.getMonth()] + " " + current_day.getDate()  + ", " + current_day.getFullYear();
+		var url_date = "" + (current_day.getMonth() + 1) + current_day.getDate() + current_day.getFullYear();
+		// console.log(url_date)
+		// console.log(date)
+		if(i == DotW)
+		{
+			scroller.innerHTML += "<a href=/" + url_date + ' class="current_day">' + date + "</a>";
+		}
+		else
+		{
+			scroller.innerHTML += "<a href=/" + url_date + ' class="not_current_day">' + date + "</a>";
+		}
+		
+	}
+
+	var source = document.getElementById("protest_post_template").innerHTML;
+	var temp = Handlebars.compile(source);
+	for (var i = 0; i < 10; i++) 
+	{
+		var context = {"number": i};
+		document.getElementById("content").innerHTML += temp(context);
+	}
+	
+});
+
+
+//open login window
+function login_signup()
+{
+	var modal = document.getElementById("login_modal");
+	modal.style.display = "block";
+	window.onclick = function(event) 
+	{
+		if (event.target == modal) 
+		{
+			modal.style.display = "none";
+		}
+	}
+	// console.log("login_signup");
+}
+
+function login()
+{
+	return false;
+}
+
+function signup()
+{
+	return false;
+}
 
 
 function get_websites() 
@@ -60,6 +130,7 @@ function get_websites()
   return false;
 }
 
+
 function display_website()
 {
 	var url = site_url
@@ -102,3 +173,18 @@ function display_website()
 	})
 	return false;
 }
+
+
+
+
+
+// sidebar
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
